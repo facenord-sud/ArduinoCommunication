@@ -1,0 +1,14 @@
+target/
+bin/
+gen/
+nbproject/
+reports/
+dist/
+.git/
+
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear

@@ -1,0 +1,180 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>diuf.unifr.ch.xwot</groupId>
+    <artifactId>ArduinoCommunication</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
+    <name>Arduino Communication ${project.version}</name>
+    <description>
+        Communication to an arduino through RxTx.
+    </description>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <developers>
+        <developer>
+            <id>numa</id>
+            <name>Numa de Montmollin</name>
+            <email>numa.demontmollin@unifr.ch</email>
+            <roles>
+                <role>Project Manager</role>
+                <role>Developer</role>
+            </roles>
+            <organization>diuf.unifr.ch</organization>
+            <timezone>+1</timezone>
+        </developer>
+    </developers>
+    
+    <licenses>
+        <license>
+            <name>GNU LESSER GENERAL PUBLIC LICENSE Version 3, 29 June 2007</name>
+            <url>lgpl-3.0.txt</url>
+        </license>
+    </licenses>
+    
+    <scm>
+        <connection>scm:git:http://diufpc46.unifr.ch/rhode/Generic/ArduinoCommunication</connection>
+        <url>http://svn.root1.de/svn/rxtx-rebundled</url>
+    </scm>
+    <repositories>
+        
+        <repository>
+            <id>maven2-repository.dev.java.net</id>
+            <name>Java.net Repository for Maven</name>
+            <url>http://download.java.net/maven/2/</url>
+            <layout>default</layout>
+        </repository>
+        <repository>
+            <id>toplink</id>
+            <name>Repository for library Library[toplink]</name>
+            <url>http://download.java.net/maven/1</url>
+        </repository>
+        <repository>
+            <id>EclipseLink Repo</id>
+            <name>Repository for library Library[eclipselink]</name>
+            <url>http://download.eclipse.org/rt/eclipselink/maven.repo/</url>
+            <snapshots>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>morphia.googlecode.com</id>
+            <name>Morphia Repo at Google Code</name>
+            <url>http://morphia.googlecode.com/svn/mavenrepo/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>Sonatype</id>
+            <name>Sonatype repo</name>
+            <url>http://repository.sonatype.org</url>
+            <snapshots>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>diufpc46.diuf.unifr.ch</id>
+            <name>Diuf server</name>
+            <url>http://diufpc46.unifr.ch/artifactory/ext-release-local/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    <build>
+        <plugins>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.1.2</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.7</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <encoding>UTF-8</encoding>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>changelog-maven-plugin</artifactId>
+                <version>2.0-beta-1</version>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
+        <!-- Apache http client -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.1.1</version>
+        </dependency>
+        <!--  Gson: Java to Json conversion and vice versa -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.2.4</version>
+            <scope>compile</scope>
+        </dependency>
+        
+        <!--rxtx library-->
+        <dependency>
+            <groupId>de.root1</groupId>
+            <artifactId>rxtx-rebundled</artifactId>
+            <version>2.2pre2</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.6.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>1.6.4</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>diuf.unifr.ch.xwot</groupId>
+            <artifactId>ArduinoCommunicationTest</artifactId>
+            <version>1.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
