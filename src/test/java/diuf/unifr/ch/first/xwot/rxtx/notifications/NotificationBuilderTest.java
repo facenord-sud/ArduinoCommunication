@@ -7,7 +7,7 @@ package diuf.unifr.ch.first.xwot.rxtx.notifications;
 
 import org.apache.http.entity.StringEntity;
 import org.junit.Test;
-import utils.SerialHelpers;
+import diuf.unifr.ch.first.xwot.rxtx.test.utils.SerialHelpers;
 
 /**
  *

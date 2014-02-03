@@ -45,6 +45,7 @@ public class TestClient extends AbstractClient{
      *     {@link String }
      *     
      */
+    @Override
     public String getUri() {
         return uri;
     }

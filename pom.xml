@@ -171,10 +171,16 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>diuf.unifr.ch.xwot</groupId>
-            <artifactId>ArduinoCommunicationTest</artifactId>
-            <version>1.0</version>
-            <scope>test</scope>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.8.1</version>
+        </dependency>
+         <!-- Testing stuff -->
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>1.12</version>
+            <!--<scope>test</scope>-->
         </dependency>
     </dependencies>
 </project>
