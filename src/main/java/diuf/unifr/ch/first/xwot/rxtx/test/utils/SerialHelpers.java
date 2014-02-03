@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package utils;
+package diuf.unifr.ch.first.xwot.rxtx.test.utils;
 
 import diuf.unifr.ch.first.xwot.rxtx.RxtxConnection;
 import diuf.unifr.ch.first.xwot.rxtx.test.ConnectionSimulator;

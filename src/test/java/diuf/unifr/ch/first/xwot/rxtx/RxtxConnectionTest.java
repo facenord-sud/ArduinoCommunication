@@ -17,8 +17,8 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.slf4j.LoggerFactory;
-import utils.SerialHelpers;
-import utils.TestHelpers;
+import diuf.unifr.ch.first.xwot.rxtx.test.utils.SerialHelpers;
+import diuf.unifr.ch.first.xwot.rxtx.test.utils.TestHelpers;
 
 /**
  *
