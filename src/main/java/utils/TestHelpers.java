@@ -3,14 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package diuf.unifr.ch.first.xwot.rxtx.test.utils;
+package utils;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 import com.sun.jersey.api.client.config.ClientConfig;
 import com.sun.jersey.api.client.config.DefaultClientConfig;
+import diuf.unifr.ch.first.xwot.rxtx.RxtxConnection;
+import diuf.unifr.ch.first.xwot.rxtx.test.ConnectionSimulator;
+import diuf.unifr.ch.first.xwot.rxtx.test.HardwareSpeaker;
+import gnu.io.PortInUseException;
+import gnu.io.UnsupportedCommOperationException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.junit.After;
+import org.junit.AfterClass;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import org.junit.Before;
+import org.junit.BeforeClass;
 
 /**
  *
@@ -26,7 +38,6 @@ public class TestHelpers {
     /**
      * Utility method which creates a new jersey-client.
      *
-     * @param uri
      * @return
      */
     protected WebResource getClient(String uri) {

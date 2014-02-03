@@ -10,7 +10,7 @@ package diuf.unifr.ch.first.xwot.rxtx.test.exception;
  *
  * @author leo
  */
-public class SocatNotStartedError extends RuntimeException{
+public class SocatNotStartedError extends Error{
 
     public SocatNotStartedError() {
     }

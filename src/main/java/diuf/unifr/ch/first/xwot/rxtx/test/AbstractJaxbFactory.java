@@ -16,7 +16,7 @@ import diuf.unifr.ch.first.xwot.rxtx.TinkerShield;
  */
 public class AbstractJaxbFactory {
  
-    private final HardwareSpeaker hardware;
+    private HardwareSpeaker hardware;
     
     public AbstractJaxbFactory(HardwareSpeaker hardware) {
         this.hardware = hardware;

@@ -9,10 +9,20 @@ package diuf.unifr.ch.first.xwot.rxtx;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import gnu.io.PortInUseException;
+import gnu.io.UnsupportedCommOperationException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.slf4j.LoggerFactory;
-import diuf.unifr.ch.first.xwot.rxtx.test.utils.SerialHelpers;
+import utils.SerialHelpers;
+import utils.TestHelpers;
 
 /**
  *

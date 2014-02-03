@@ -5,7 +5,6 @@
  */
 package diuf.unifr.ch.first.xwot.rxtx.test;
 
-import diuf.unifr.ch.first.xwot.rxtx.test.exception.BadOperatingSystem;
 import diuf.unifr.ch.first.xwot.rxtx.test.exception.SocatNotStartedError;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +15,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Timer;
 import org.slf4j.LoggerFactory;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 /**
  *
  * @author leo
@@ -55,7 +56,7 @@ public class ConnectionSimulator {
             correctPort = "/dev/ttys";
         } else {
             //TODO
-            throw new BadOperatingSystem("Windows can not be used for testing.");
+            throw new NotImplementedException();
         }
     }
 

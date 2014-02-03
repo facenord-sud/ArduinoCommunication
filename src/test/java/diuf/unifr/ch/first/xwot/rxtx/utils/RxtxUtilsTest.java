@@ -9,7 +9,7 @@ package diuf.unifr.ch.first.xwot.rxtx.utils;
 import diuf.unifr.ch.first.xwot.rxtx.TinkerShield;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import diuf.unifr.ch.first.xwot.rxtx.test.utils.SerialHelpers;
+import utils.SerialHelpers;
 
 /**
  *

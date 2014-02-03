@@ -7,7 +7,7 @@ package diuf.unifr.ch.first.xwot.rxtx.notifications;
 
 import org.apache.http.entity.StringEntity;
 import org.junit.Test;
-import diuf.unifr.ch.first.xwot.rxtx.test.utils.SerialHelpers;
+import utils.SerialHelpers;
 
 /**
  *
@@ -52,7 +52,7 @@ public class NotificationBuilderTest extends SerialHelpers{
 
         @Override
         public StringEntity jaxbToStringEntity(Object client) {
-            return null;
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         }
     }
 

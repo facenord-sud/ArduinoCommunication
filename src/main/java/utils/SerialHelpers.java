@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package diuf.unifr.ch.first.xwot.rxtx.test.utils;
+package utils;
 
 import diuf.unifr.ch.first.xwot.rxtx.RxtxConnection;
 import diuf.unifr.ch.first.xwot.rxtx.test.ConnectionSimulator;
@@ -13,7 +13,9 @@ import gnu.io.UnsupportedCommOperationException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.slf4j.LoggerFactory;
 

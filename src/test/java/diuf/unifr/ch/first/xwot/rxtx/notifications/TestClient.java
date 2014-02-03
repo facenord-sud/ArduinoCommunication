@@ -32,7 +32,7 @@ import javax.xml.bind.annotation.XmlType;
     "uri"
 })
 @XmlRootElement(name = "testClient")
-public class TestClient extends AbstractClient{
+public class TestClient {
 
     @XmlElement(required = true)
     protected String uri;
@@ -45,7 +45,6 @@ public class TestClient extends AbstractClient{
      *     {@link String }
      *     
      */
-    @Override
     public String getUri() {
         return uri;
     }
