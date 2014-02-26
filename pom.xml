@@ -16,7 +16,20 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
+    
+    <distributionManagement>
+          <repository>
+              <id>diufpc46-release</id>
+              <name>diufpc46-snapshots</name>
+              <url>http://diufpc46.unifr.ch/artifactory/ext-release-local</url>
+          </repository>
+          <snapshotRepository>
+              <id>diufpc46-snapshot</id>
+              <name>diufpc46-snapshots</name>
+              <url>http://diufpc46.unifr.ch/artifactory/ext-release-local</url>
+          </snapshotRepository>
+      </distributionManagement>
+    
     <developers>
         <developer>
             <id>numa</id>
