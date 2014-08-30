@@ -50,7 +50,7 @@ public class ConnectionSimulator {
         String os = System.getProperty("os.name").toLowerCase();
         if (os.equals("linux")) {
             exec = "socat -d -d PTY: PTY: ";
-            correctPort = "/dev/pt/s";
+            correctPort = "/dev/pts";
         } else if (os.equals("mac os x")) {
             exec = "socat -d -d PTY PTY ";
             correctPort = "/dev/ttys";
@@ -86,9 +86,10 @@ public class ConnectionSimulator {
             logger.debug("slave is on port: " + slave);
             master = getSocatPort(in.readLine());
             logger.debug("master is on port: " + master);
-            if (!in.readLine().contains("N starting data transfer loop with FDs [3,3] and [5,5]")
+            String socatString = in.readLine();
+            if (!socatString.contains("starting data transfer loop")
                     || !master.contains(correctPort) || !slave.contains(correctPort)) {
-                throw new SocatNotStartedError("socat can not be strated properly");
+                throw new SocatNotStartedError("socat can not be strated properly: " + socatString);
             }
             t.stop();
         } catch (IOException ex) {
