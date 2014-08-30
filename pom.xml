@@ -18,17 +18,17 @@
     </properties>
     
     <distributionManagement>
-          <repository>
-              <id>diufpc46-release</id>
-              <name>diufpc46-snapshots</name>
-              <url>http://diufpc46.unifr.ch/artifactory/ext-release-local</url>
-          </repository>
-          <snapshotRepository>
-              <id>diufpc46-snapshot</id>
-              <name>diufpc46-snapshots</name>
-              <url>http://diufpc46.unifr.ch/artifactory/ext-release-local</url>
-          </snapshotRepository>
-      </distributionManagement>
+        <repository>
+            <id>diufpc46-release</id>
+            <name>diufpc46-snapshots</name>
+            <url>http://diufpc46.unifr.ch/artifactory/ext-release-local</url>
+        </repository>
+        <snapshotRepository>
+            <id>diufpc46-snapshot</id>
+            <name>diufpc46-snapshots</name>
+            <url>http://diufpc46.unifr.ch/artifactory/ext-release-local</url>
+        </snapshotRepository>
+    </distributionManagement>
     
     <developers>
         <developer>
@@ -184,11 +184,17 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.8.1</version>
         </dependency>
-         <!-- Testing stuff -->
+        <!-- Testing stuff -->
         <dependency>
             <groupId>com.sun.jersey</groupId>
             <artifactId>jersey-client</artifactId>

@@ -93,7 +93,7 @@ public class RxtxConnection {
 
     private void initialize() throws PortInUseException, UnsupportedCommOperationException, IOException, PortNotFoundException {
         String testPort = System.getProperty("xwot.test.port");
-        logger.debug(testPort);
+        logger.debug("port for testing: "+testPort);
         if(testPort != null && !testPort.equals("")) {
             PORT_NAMES = new String[1];
             PORT_NAMES[0] = testPort;
@@ -101,6 +101,7 @@ public class RxtxConnection {
         CommPortIdentifier portId = null;
         Enumeration portEnum = CommPortIdentifier.getPortIdentifiers();
         logger.debug("looking for ports...");
+        logger.debug("rxtx system properties: " + System.getProperty("gnu.io.rxtx.SerialPorts"));
         if (portEnum.hasMoreElements()) {
             logger.debug("serial port(s) found on your os");
         } else {
