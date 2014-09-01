@@ -195,7 +195,6 @@ public class JaxbTestFactory extends AbstractJaxbFactory{
    }
 }
 ```
-```
 
 ### Utilisation de la simulation
 L’utilisation est extrêment simple, deux classes sont à notre disposition HardwareSpeaker, en remplacement de l’Arduino et ConnectionSimulator, utilisé pour gérer la simulation des deux ports, c’est-à-dire socat.
