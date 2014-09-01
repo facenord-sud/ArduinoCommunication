@@ -174,7 +174,7 @@ wait 1ms
 ### AbstractJaxbFactory
 Les deux classes HardwareSpeaker et ConnectionSimulator sont généralistes et peuvent être utilisées pour simuler n’importe quelle connexion par port série. Cependant, la troisième classe,AbstractJaxbFactory, permet de simuler un Arduino. Le principe est simple, à chaque appel de la méthode send, l’objet Java passé en deuxième paramètre est encodé en un élément JSON représentant un composant. Comme nous l’avons vu à la section ci-dessus, chaque élément JSON représentant un composant doit être identifié par la valeur du pin auquel il est connecté. Pour ce faire, nous utilisons l’enum TinkerShield qui dans ce cas là, retourne la valeur 9. Dans la méthode send, la chaîne de caractères ainsi obtenue est passée en paramètre de la méthode speak de HardwareSpeaker. Comme le montre le code ci-dessous une utilisation de cette classe peut être faite en simplifiant la création de Factory, qui étend de AbstractJaxbFactory, simulant différents états de l’Arduino.
 
-```￼java
+```java
 public class JaxbTestFactory extends AbstractJaxbFactory{
   public JaxbTestFactory(HardwareSpeaker hardware) {
      super(hardware);
@@ -194,6 +194,7 @@ public class JaxbTestFactory extends AbstractJaxbFactory{
      super.send(TinkerShield.o_1, lp);
    }
 }
+```
 ```
 
 ### Utilisation de la simulation
