@@ -20,7 +20,7 @@ Finalement, nous avons défini quelques fonctionnalités pour gérer les noti
 
 Le diagramme ci-dessous synthétise de quelle manière ces fonctionnalités sont structurées dans la bibliothèque ArduinoCommunication
 
-![](arduino_com.jpg)
+![](https://raw.githubusercontent.com/facenord-sud/ArduinoCommunication/master/arduino_com.jpg)
 
 ## Motivation
 La première motivation est de créer un ensemble de fonctionnalités, spécifiques à notre cas, en utilisant celles de RxTX, pour interagir avec l’Arduino connecté au port série. Ainsi, nous permettons la réutilisation de code, le code de l’application est beaucoup plus lisible et nous pouvons réduire le nombre d’erreurs potentielles.
@@ -45,7 +45,7 @@ Par exemple, pour le composant qui est le moteur du rideau de fer, produisant co
 ```
 Comme le moteur est connecté au pin O1, identifié par le nombre dix, la sous-chaîne est identifiée par le nombre dix et ajoutée à la chaîne principale échangée avec le serveur. Au final, nous obtenons du JSON structuré de la sorte :
 ```json
-1 {"10": {"speed": 90}, "14": {"value": 0, "oldValue": 500}, ...}
+{"10": {"speed": 90}, "14": {"value": 0, "oldValue": 500}, ...}
 ```
 Où `...` signifie que d’autres sous-éléments identifiés par le nombre d’un pin peuvent exister. Le deuxième élément, identifié par le nombre 14, représente un autre composant connecté au connecteur I1 (connecteur d’entrée de l’Arduino, sur lequel peut être branché différents type de senseur.
 
@@ -60,7 +60,7 @@ Décrit comment l'interaction avec l'Arduino a été implémentée et comment ut
 ### Implémentation
 Les fonctionnalités pour interagir avec l’Arduino sont réparties dans trois classes, suivant leur degré d’abstraction. Le diagramme ci-dessous montre les relations entre ces classes et leurs méthodes.
 
-![](test.jpg)
+![](https://raw.githubusercontent.com/facenord-sud/ArduinoCommunication/master/test.jpg)
 
 #### Première couche d'abstraction
 La première classe, `RxTxConnection`, permet la connexion/déconnexion au port série, la lecture et l’écriture d’informations du port série et implémente un observateur pour la réception d’informations envoyées par l’Arduino. RxTx propose déjà un observateur, mais uniquement un observant à la fois peut l’utiliser. Notre observateur se base donc sur celui de RxTx, mais permet un nombre illimité d’observant. Un dernier point est que cette classe est un singleton autorisant une unique connexion au port série dans toute l’application.
@@ -93,7 +93,7 @@ LinearPotentiometer pot = utils.getComponent(LinearPotentiometer.class, TinkerSh
 ```
 Si pour une raison ou une autre, il n’est pas possible de retourner une instance de la classe `LinearPotentiometer`, JSON mal formé, pas d’information de l’Arduino, etc, la valeur est nulle. A noter encore que le JSON envoyé par l’Arduino est équivalent à :
 ```json
-{14: {oldPosition: 0, position: 1023}}
+{"14": {"oldPosition": 0, "position": 1023}}
 ```
 
 #### Modifier l'état d'un composant
@@ -109,8 +109,8 @@ utils.addComponent(TinkerShield.o_2, cs2);
 utils.send();
 ```
 Le JSON produit sera de la forme:
-```
-{10: {speed: 180}, 11: {speed: 0}}
+```json
+{"10": {"speed": 180}, "11": {"speed": 0}}
 ```
 Aux lignes numéro six et sept de l'exemple ci-dessus, nous observons que la méthode `addComponent` prends deux arguments. Le premier indique le numéro du port de l’Arduino auquel est branché l’Arduino et le deuxième est l’objet à encoder. La méthode `send` de la ligne numéro huit envoie les objets `cs1` et `cs2` à l’Arduino. C’est uniquement à ce moment-là que des données sont transmises à l’Arduino.
 
@@ -130,13 +130,13 @@ Toute la magie de la simulation d’un Arduino vient du programme [socat](http:/
 
 Le principe est simple, nous créons deux ports séries connectés, appelés master et slave. Toutes les informations envoyées sur le premier port seront automatiquement disponibles sur le deuxième port et inversement. Normalement, une seule connexion par port série est autorisée. Mais l’utilisation de deux ports série, dont les mêmes informations sont disponibles en même temps sur les deux ports permet en quelque sorte deux connexions sur un seul port. C’est exactement cette caractéristique qui nous intéresse, puisque nous avons besoin d’une connexion pour simuler un Arduino et d’une connexion utilisée par la bibliothèque ArduinoCommunication. Le diagramme ci-dessous met évidence ce principe.
 
-![](socat.jpg)
+![](https://raw.githubusercontent.com/facenord-sud/ArduinoCommunication/master/socat.jpg)
 
 Nous connectons le port master à la classe HardwareSpeaker permettant de simuler l’envoi et la lecture d’informations par port série. HardwareSpeaker possède deux méthodes importantes, une pour envoyer des informations sur le port master, qui seront disponibles sur le port slave. L’autre méthode permet de lire les informations sur le port master, qui ont été envoyées par la bibliothèque ArduinCommunication sur le port slave et donc disponibles sur le port master. Par exemple, quand nous ordonnons à HardwareSpeaker d’envoyer des informations sur le port master, les informations sont disponibles sur le port slave, faisant penser que l’Arduino a envoyé ces informations.
 
 La simulation d’un Arduino est réalisée dans trois classes, qui sont représentées à l’aide du diagramme ci-dessous.
 
-![](rxtx.jpg)
+![](https://raw.githubusercontent.com/facenord-sud/ArduinoCommunication/master/rxtx.jpg)
 
 #### ConnectionSimulator
 La première classe, ConnectionSimulator, permet d’effectuer plusieurs actions :
@@ -199,13 +199,17 @@ public class JaxbTestFactory extends AbstractJaxbFactory{
 ### Utilisation de la simulation
 L’utilisation est extrêment simple, deux classes sont à notre disposition HardwareSpeaker, en remplacement de l’Arduino et ConnectionSimulator, utilisé pour gérer la simulation des deux ports, c’est-à-dire socat.
 Tout d’abord, il est nécessaire de lancer la simulation de ports séries. Pour ce faire :
+
 ```java
 ConnectionSimulator simulator = new ConnectionSimulator();
 ```
+
 Si pour une raison ou un autre, utiliser un Singleton est plus adapté :
+
 ```java
 ConnectionSimulator.getInstance();
 ```
+
 Le premier appel à la méthode getInstance démarrera socat.
 
 HardwareSpeaker, la classe pour simuler une connexion par port série, possède deux méthodes. La première `speak(java.util.String)``, permet de simuler l’envoi de données sur le port série. Typiquement, elle permet de simuler un Arduino envoyant des données sur le port série. La deuxième méthode, `listen`, permet de lire les informations sur le port série. Dans ce cas, c’est l’inverse, cela peut par exemple simuler le fait qu’un Arduino lise des données qui ont été envoyées sur le port série.
@@ -217,6 +221,7 @@ simulator.getHardwareSpeaker().speak("Hello world!");
 
 Ainsi l’application normalement connecté à l’Arduino et écoutant sur le port série approprié (pour la simulation le port série est indiqué dans la propriété système `xwot.test.port`), recevra Hello world!
 A son tour, l’application envoie le message Hello people! et pour simuler le fait que l’Arduino lit l’information :
+
 ```java
 simulator.getHardwareSpeaker().listen(); // return Hello people!
 ```
@@ -237,9 +242,11 @@ fac.send(TinkerShield.i_0, pot);
 ```
 
 La ligne numéro trois assigne la position cent (en pour-cent), qui est ensuite transpo- sée sur une échelle de 0 à 1023. La ligne numéro quatre encode l’objet pot en JSON et envoie la chaîne obtenue sur le port série de l’application grâce à la méthode speak de HardwareSpeaker. TinkerShield.i_0 correspond au pin I0 de l’Arduino (valeur qua- torze) et donc le JSON produit sera de la forme :
+
 ```json
-{14: {position: 1023, oldPosition: 0}}
+{"14": {"position": 1023, "oldPosition": 0}}
 ```
+
 Où 14 est la valeur numérique de I0, côté serveur stockée dans l’enum TinkerShield et permet donc d’identifier le composant Arduino avec précision, puisque cela indique sur quel pin de l’Arduino le composant de type potentiomètre linéaire est connecté.
 
 Pour utiliser la classe AbstractJaxbFacory, nous recommandons la création d’une Factory qui étend de cette classe. Par contre, ce que ne fait pas la classe AbstractJaxbFactory c’est de pouvoir envoyer plusieurs objets dans une même chaîne de caractères JSON. La lecture de messages JSON envoyés par l’application est possible grâce à la méthode listen de HardwareSpeaker, mais cette méthode renvoie uniquement une chaîne de caractères et ne permet ni de parser le JSON ni de le trans- former en instance de classe représentant un composant. Cependant, ceci pourrait être implémenté sans trop de mal en s’inspirant de la bibliothèque ArduinoCommunication.
